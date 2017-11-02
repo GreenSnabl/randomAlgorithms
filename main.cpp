@@ -129,25 +129,52 @@ int euklid(int p, int q)
 }
 
 
+std::vector<int> insertionSort(std::vector<int> v)
+{
+    int key, i;
+    for (int j = 1; j < v.size(); ++j)
+    {
+    key = v[j];
+    i = j -1;
+    while(i >= 0 && v[i] > key)
+    {
+        v[i+1] = v[i];
+        --i;    
+    }
+    v[i+1] = key;
+    }
+    return v;
+}
+
+std::vector<int> decInsertionSort(std::vector<int> v)
+{
+    int key, i;
+    for(int j = 1; j < v.size(); ++j)
+    {
+        key = v[j];
+        i = j - 1;
+        while(i >= 0 && v[i] < key)
+        {
+            v[i+1] = v[i];
+            --i;
+        }
+        v[i+1] = key;
+    }
+    return v;
+}
+
+
 int main()
 {
+    std::vector<int> vec{1,4,6,3,2,7,2,9,10,34,225};
+    std::vector<int> v1,v2;
+    v1 = insertionSort(vec);
+    v2 = decInsertionSort(vec);
+    for(int i = 0; i< v1.size(); ++i)
+        std::cout << "unsorted:\t" << vec[i] << "\tincreasing sorted:\t" << v1[i] 
+                << "\tdecreasing sorted:\t" << v2[i] << "\n";
 
 
     
-    countWords("test.txt");
-    
-    
-    
-    //countWords("test.txt");
-    
-   //getLetterCount("Martin Luther – Wikipedia.html");
-
-    /*
-    
-    std::string st = "5435435";
-    int cool= atoi(st);
-    std::cout << cool << std::endl;
-    */
-
     return 0;
 }
